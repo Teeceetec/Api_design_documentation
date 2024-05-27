@@ -1,30 +1,36 @@
-SKILLHUB LMS API Documentation
-Introduction
+### SKILLHUB LMS API Documentation
+
+**Introduction**
 Overview
 The SKILLHUB LMS API provides programmatic access to the XYZ Learning Management System, enabling developers to mint NFTs, manage ownership, and handle transactions on the blockchain. This documentation details the endpoints, request formats, response structures, and error codes necessary for integrating with the XYZ LMS API.
 
-Audience
+## Audience
+
 This documentation is intended for blockchain developers, software engineers, and technical integrators who need to interact with the XYZ LMS smart contract. Familiarity with Ethereum smart contracts, Solidity, and ERC-721 tokens is assumed.
 
-Getting Started
-Authentication
+## Getting Started
+
+**Authentication**
 All interactions with the LMS smart contract require the user to have a valid Ethereum wallet. The API does not require traditional API keys but uses Ethereum addresses for authentication.
 
-Base URL
+## Base URL
+
 The base URL for all API requests is the Ethereum blockchain network where the smart contract is deployed. The contract address is needed for interactions.
 
-Endpoints
-Overview
+## Endpoints
+
+**Overview**
 The SKILLHUB LMS API consists of several functions that manage NFTs, ownership, and transactions. Below is the detailed documentation for each function.
 
-Detailed Endpoint Documentation
+## Detailed Endpoint Documentation
+
 1. MintNFT
 Description:
 Mints a new NFT using the pre-defined URI.
 
 Function Signature:
 
-solidity
+```solidity
 Copy code
 function MintNFT() public
 Request:
@@ -37,20 +43,20 @@ Emits CreatedNft event
 Emits TransferNftToContract event
 Error Messages:
 
-EXCEEDED_NUMBER_NFT_TOKENS_AVAILABLE: Max number of tokens exceeded.
+EXCEEDED_NUMBER_NFT_TOKENS_AVAILABLE: Max number of tokens exceeded.```
 Code Sample:
 
-solidity
+```solidity
 Copy code
 LMS lms = LMS(contractAddress);
 lms.MintNFT();
 2. tokenURI
 Description:
-Returns the metadata URI of a given token.
+Returns the metadata URI of a given token.```
 
 Function Signature:
 
-solidity
+```solidity
 Copy code
 function tokenURI(uint256 _tokenId) public view override returns (string memory)
 Request:
@@ -62,19 +68,19 @@ Response:
 Returns: string (URI of the token)
 Error Messages:
 
-BasicNft_TokenUriNotFound: Token URI not found.
+BasicNft_TokenUriNotFound: Token URI not found.```
 Code Sample:
 
-solidity
+```solidity
 Copy code
 string memory uri = lms.tokenURI(tokenId);
 3. depositToken
 Description:
-Deposits tokens into the contract.
+Deposits tokens into the contract.```
 
 Function Signature:
 
-solidity
+```solidity
 Copy code
 function depositToken(string memory _name, uint256 _amount) external payable nonReentrant
 Request:
@@ -87,19 +93,19 @@ Response:
 Emits DepositLog event
 Error Messages:
 
-NOT_ENOUGH_ETHER: Not enough Ether sent.
+NOT_ENOUGH_ETHER: Not enough Ether sent.```
 Code Sample:
 
-solidity
+```solidity
 Copy code
 lms.depositToken{value: amount}("John Doe", amount);
 4. claimReward
 Description:
-Transfers an NFT to the user as a reward.
+Transfers an NFT to the user as a reward.```
 
 Function Signature:
 
-solidity
+```solidity
 Copy code
 function claimReward() public
 Request:
@@ -107,19 +113,19 @@ Request:
 Method: Transaction
 Response:
 
-Emits TransferNftToAnotherContract event
+Emits TransferNftToAnotherContract event```
 Code Sample:
 
-solidity
+```solidity
 Copy code
 lms.claimReward();
 5. updateURI
 Description:
-Updates the base URI for NFTs (owner only).
+Updates the base URI for NFTs (owner only).```
 
 Function Signature:
 
-solidity
+```solidity
 Copy code
 function updateURI(string memory uri) public _onlyOwner
 Request:
@@ -131,19 +137,19 @@ Response:
 None
 Error Messages:
 
-NOT_AN_OWNER: Caller is not the owner.
+NOT_AN_OWNER: Caller is not the owner.```
 Code Sample:
 
-solidity
+```solidity
 Copy code
 lms.updateURI("ipfs://newUri");
 6. transferOwnership
 Description:
-Transfers contract ownership to a new address.
+Transfers contract ownership to a new address.```
 
 Function Signature:
 
-solidity
+```solidity
 Copy code
 function transferOwnership(address newOwner) public _onlyOwner
 Request:
@@ -155,19 +161,19 @@ Response:
 Emits OwnerShipTransfer event
 Error Messages:
 
-INVALID_NEW_ADDRESS: New owner address is invalid.
+INVALID_NEW_ADDRESS: New owner address is invalid.```
 Code Sample:
 
-solidity
+```solidity
 Copy code
 lms.transferOwnership(newOwnerAddress);
 7. withdraw
 Description:
-Withdraws all Ether from the contract to the owner's address.
+Withdraws all Ether from the contract to the owner's address.```
 
 Function Signature:
 
-solidity
+```solidity
 Copy code
 function withdraw() external _onlyOwner nonReentrant
 Request:
@@ -179,10 +185,10 @@ Emits Withdrawal event
 Error Messages:
 
 BALANCE_TOO_LOW_FOR_WITHDRAWAL: Contract balance is too low.
-WITHDRAWAL_FAILED: Withdrawal failed.
+WITHDRAWAL_FAILED: Withdrawal failed.```
 Code Sample:
 
-solidity
+```solidity
 Copy code
 lms.withdraw();
 User Journey Map
@@ -201,11 +207,11 @@ Call withdraw to transfer the balance to the owner's address.
 Expected Outcome: Tokens are deposited and withdrawn successfully.
 Guidelines for Common Scenarios
 Data Retrieval
-To retrieve data such as token metadata or contract owner, use the provided view functions.
+To retrieve data such as token metadata or contract owner, use the provided view functions.```
 
 Example:
 
-solidity
+```solidity
 Copy code
 string memory uri = lms.tokenURI(tokenId);
 address owner = lms.getOwner();
@@ -219,17 +225,17 @@ Copy code
 lms.depositToken{value: amount}("John Doe", amount);
 lms.updateURI("ipfs://newUri");
 Error Handling
-Handle errors by catching the revert messages and providing meaningful feedback.
+Handle errors by catching the revert messages and providing meaningful feedback.```
 
 Example:
 
-solidity
+```solidity
 Copy code
 try lms.withdraw() {
     // Success
 } catch Error(string memory reason) {
     // Handle error
-}
+}```
 Appendix
 Glossary
 ERC-721: A standard for non-fungible tokens on the Ethereum blockchain.
