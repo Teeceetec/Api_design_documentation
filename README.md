@@ -4,11 +4,11 @@
 
 **Overview**
 
-The SKILLHUB LMS API provides programmatic access to the XYZ Learning Management System, enabling developers to mint NFTs, manage ownership, and handle transactions on the blockchain. This documentation details the endpoints, request formats, response structures, and error codes necessary for integrating with the XYZ LMS API.
+The SKILLHUB LMS API provides programmatic access to the XYZ Learning Management System, enabling developers to mint NFTs, manage ownership, and handle transactions on the blockchain. This documentation details the endpoints, request formats, response structures, and error codes necessary for integrating with the SKILLHUB LMS API.
 
 ## Audience
 
-This documentation is intended for blockchain developers, software engineers, and technical integrators who need to interact with the XYZ LMS smart contract. Familiarity with Ethereum smart contracts, Solidity, and ERC-721 tokens is assumed.
+This documentation is intended for blockchain developers, software engineers, and technical integrators who need to interact with the SKILLHUB LMS smart contract. Familiarity with Ethereum smart contracts, Solidity, and ERC-721 tokens is assumed.
 
 ## Getting Started
 
@@ -208,16 +208,19 @@ lms.withdraw();
 ```
 ## User Journey Map
 
-Scenario 1: Basic NFT Minting and Transfer
-Objective: Mint an NFT and transfer it to a user.
-Steps:
+**Scenario 1**: Basic NFT Minting and Transfer
+
+**Objective**: Mint an NFT and transfer it to a user.
+
+**Steps**:
 Deploy the LMS contract.
 Call MintNFT to mint a new NFT.
 Call claimReward to transfer the NFT to a user.
 Expected Outcome: NFT is minted and transferred to the user.
 Scenario 2: Handling Deposits and Withdrawals
 Objective: Deposit tokens and withdraw them.
-Steps:
+
+**Steps**:
 Call depositToken to deposit Ether.
 Call withdraw to transfer the balance to the owner's address.
 Expected Outcome: Tokens are deposited and withdrawn successfully.
