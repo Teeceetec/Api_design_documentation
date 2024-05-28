@@ -4,7 +4,7 @@
 
 **Overview**
 
-The SKILLHUB LMS API provides programmatic access to the XYZ Learning Management System, enabling developers to mint NFTs, manage ownership, and handle transactions on the blockchain. This documentation details the endpoints, request formats, response structures, and error codes necessary for integrating with the SKILLHUB LMS API.
+The SKILLHUB LMS API provides programmatic access to the  Learning Management System, enabling developers to mint NFTs, manage ownership, and handle transactions on the blockchain. This documentation details the endpoints, request formats, response structures, and error codes necessary for integrating with the SKILLHUB LMS API.
 
 ## Audience
 
